@@ -33,5 +33,3 @@ how to use it
         		</profile>
         	</profiles>
 
-// TODO: dtgov-workflow state (Ontology | Custom property | REST)
-// TODO: inject deployed artifact
