@@ -1,0 +1,116 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.jboss.arquillian.container</groupId>
+	<artifactId>arquillian-sramp-remote</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Overlod S-RAMP: Arquillian remote container adapter</name>
+	<description>This project consist of S-RAMP remote container adapter implementation for Arquillian. This Arquillian extension will enable users to deploy artifacts to S-RAMP Repository before running their tests using Arquillian.</description>
+
+	<properties>
+		<version.arquillian_core>1.0.4.Final</version.arquillian_core>
+		<version.sramp>0.3.0.Final</version.sramp>
+	</properties>
+
+	<!-- clip -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian_core}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>arquillian-container-spi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>arquillian-container-test-spi</artifactId>
+		</dependency>
+
+		<!-- For @Inject annotations -->
+		<dependency>
+			<groupId>org.jboss.arquillian.testenricher</groupId>
+			<artifactId>arquillian-testenricher-cdi</artifactId>
+		</dependency>
+
+		<!-- For @Resource annotations -->
+		<dependency>
+			<groupId>org.jboss.arquillian.testenricher</groupId>
+			<artifactId>arquillian-testenricher-resource</artifactId>
+		</dependency>
+
+		<!-- For @ArquillianResource annotated InitialContext injection points -->
+		<dependency>
+			<groupId>org.jboss.arquillian.testenricher</groupId>
+			<artifactId>arquillian-testenricher-initialcontext</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.overlord.sramp</groupId>
+			<artifactId>s-ramp-client</artifactId>
+			<version>${version.sramp}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.overlord.sramp</groupId>
+			<artifactId>s-ramp-integration-switchyard</artifactId>
+			<version>${version.sramp}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.overlord.sramp</groupId>
+			<artifactId>s-ramp-integration-kie</artifactId>
+			<version>${version.sramp}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+	</dependencies>
+	<!-- clip -->
+	
+	<profiles>
+		<profile>
+			<id>arquillian-sramp-remote</id>
+			<dependencies>
+				<dependency>
+					<groupId>org.jboss.spec</groupId>
+					<artifactId>jboss-javaee-6.0</artifactId>
+					<version>1.0.0.Final</version>
+					<type>pom</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.jboss.arquillian.container</groupId>
+					<artifactId>arquillian-sramp-remote</artifactId>
+					<version>0.0.1-SNAPSHOT</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
+	
+</project>

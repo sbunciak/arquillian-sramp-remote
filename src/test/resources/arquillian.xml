@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian xmlns="http://jboss.org/schema/arquillian"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+	<container qualifier="sramp" default="true">
+		<configuration>
+			<property name="srampHost">localhost</property>
+			<property name="srampPort">8080</property>
+			<property name="srampUsername">fswAdmin</property>
+			<property name="srampPassword">admin1admin?</property>
+		</configuration>
+	</container>
+
+	<extension qualifier="webdriver">
+		<property name="browser">firefox</property>
+	</extension>
+</arquillian>
