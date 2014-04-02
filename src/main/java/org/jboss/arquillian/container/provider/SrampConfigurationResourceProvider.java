@@ -1,8 +1,9 @@
-package org.jboss.arquillian.container.configuration;
+package org.jboss.arquillian.container.provider;
 
 import java.lang.annotation.Annotation;
 
 import org.apache.log4j.Logger;
+import org.jboss.arquillian.container.configuration.SrampConfiguration;
 import org.jboss.arquillian.core.api.Instance;
 import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -11,6 +12,12 @@ import org.overlord.sramp.atom.err.SrampAtomException;
 import org.overlord.sramp.client.SrampAtomApiClient;
 import org.overlord.sramp.client.SrampClientException;
 
+/**
+ * Resource provider for S-RAMP Container Adapter Configuration.
+ * 
+ * @author sbunciak
+ *
+ */
 public class SrampConfigurationResourceProvider implements ResourceProvider {
 
 	Logger log = Logger.getLogger(SrampConfigurationResourceProvider.class);
