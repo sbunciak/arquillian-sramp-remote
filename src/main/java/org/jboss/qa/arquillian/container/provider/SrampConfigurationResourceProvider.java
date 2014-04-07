@@ -1,13 +1,13 @@
-package org.jboss.arquillian.container.provider;
+package org.jboss.qa.arquillian.container.provider;
 
 import java.lang.annotation.Annotation;
 
 import org.apache.log4j.Logger;
-import org.jboss.arquillian.container.configuration.SrampConfiguration;
 import org.jboss.arquillian.core.api.Instance;
 import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.arquillian.test.spi.enricher.resource.ResourceProvider;
+import org.jboss.qa.arquillian.container.configuration.SrampConfiguration;
 import org.overlord.sramp.atom.err.SrampAtomException;
 import org.overlord.sramp.client.SrampAtomApiClient;
 import org.overlord.sramp.client.SrampClientException;

@@ -1,4 +1,4 @@
-package org.jboss.arquillian.container.service;
+package org.jboss.qa.arquillian.container.service;
 
 import java.io.InputStream;
 

@@ -1,4 +1,4 @@
-package org.jboss.arquillian.container.service;
+package org.jboss.qa.arquillian.container.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.io.OutputStream;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.jboss.arquillian.container.configuration.SrampConfiguration;
+import org.jboss.qa.arquillian.container.configuration.SrampConfiguration;
 import org.jboss.resteasy.logging.Logger;
 import org.oasis_open.docs.s_ramp.ns.s_ramp_v1.BaseArtifactType;
 import org.overlord.sramp.atom.archive.SrampArchive;

@@ -1,4 +1,4 @@
-package org.jboss.arquillian.container.sramp;
+package org.jboss.qa.arquillian.container.sramp;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

@@ -1,10 +1,7 @@
-package org.jboss.arquillian.container;
+package org.jboss.qa.arquillian.container;
 
 import java.io.InputStream;
 
-import org.jboss.arquillian.container.configuration.SrampConfiguration;
-import org.jboss.arquillian.container.service.SrampService;
-import org.jboss.arquillian.container.service.SrampServiceImpl;
 import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
 import org.jboss.arquillian.container.spi.client.container.DeploymentException;
 import org.jboss.arquillian.container.spi.client.container.LifecycleException;
@@ -14,6 +11,9 @@ import org.jboss.arquillian.container.spi.context.annotation.ContainerScoped;
 import org.jboss.arquillian.container.spi.context.annotation.DeploymentScoped;
 import org.jboss.arquillian.core.api.InstanceProducer;
 import org.jboss.arquillian.core.api.annotation.Inject;
+import org.jboss.qa.arquillian.container.configuration.SrampConfiguration;
+import org.jboss.qa.arquillian.container.service.SrampService;
+import org.jboss.qa.arquillian.container.service.SrampServiceImpl;
 import org.jboss.resteasy.logging.Logger;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;

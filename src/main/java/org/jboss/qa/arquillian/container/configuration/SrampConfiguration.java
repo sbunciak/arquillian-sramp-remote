@@ -1,4 +1,4 @@
-package org.jboss.arquillian.container.configuration;
+package org.jboss.qa.arquillian.container.configuration;
 
 import org.jboss.arquillian.container.spi.ConfigurationException;
 import org.jboss.arquillian.container.spi.client.container.ContainerConfiguration;

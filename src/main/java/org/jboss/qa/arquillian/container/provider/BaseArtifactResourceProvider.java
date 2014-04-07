@@ -1,4 +1,4 @@
-package org.jboss.arquillian.container.provider;
+package org.jboss.qa.arquillian.container.provider;
 
 import java.lang.annotation.Annotation;
 
