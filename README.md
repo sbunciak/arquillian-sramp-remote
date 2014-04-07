@@ -21,7 +21,7 @@ how to use it
         					<scope>provided</scope>
         				</dependency>
         				<dependency>
-        					<groupId>org.jboss.arquillian.container</groupId>
+        					<groupId>org.jboss.qa.arquillian.container</groupId>
         					<artifactId>arquillian-sramp-remote</artifactId>
         					<version>0.0.1-SNAPSHOT</version>
         					<scope>test</scope>
