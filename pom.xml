@@ -10,7 +10,7 @@
 
 	<groupId>org.jboss.qa.arquillian.container</groupId>
 	<artifactId>arquillian-sramp-remote</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Overlod S-RAMP: Arquillian remote container adapter</name>
 	<description>This project consist of S-RAMP remote container adapter implementation for Arquillian. This Arquillian extension will enable users to deploy artifacts to S-RAMP Repository before running their tests using Arquillian.</description>
 	<url>https://github.com/sbunciak/arquillian-sramp-remote/wiki</url>
