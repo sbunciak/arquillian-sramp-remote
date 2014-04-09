@@ -5,8 +5,8 @@ This project consist of S-RAMP remote container adapter implementation for Arqui
 
 ## Summary
 
-- checkout wiki [page](https://github.com/sbunciak/arquillian-sramp-remote/wiki/About)
+Basically, _arquillian-sramp-remote_ converts ShrinkWrap archive into S-RAMP compatible archive, and deploy it to proper S-RAMP context. For more information checkout wiki [page](https://github.com/sbunciak/arquillian-sramp-remote/wiki/About).
 
 ## Usage
 
-- checkout this [guide](https://github.com/sbunciak/arquillian-sramp-remote/wiki/Usage)
+- How to use _arquillian-sramp-remote_ extension is described in this [guide](https://github.com/sbunciak/arquillian-sramp-remote/wiki/Usage)
