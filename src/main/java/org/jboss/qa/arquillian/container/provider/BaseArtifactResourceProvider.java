@@ -12,7 +12,7 @@ import org.oasis_open.docs.s_ramp.ns.s_ramp_v1.BaseArtifactType;
  * Resource provider for BaseArtifactType of the deployed archive
  * 
  * @author sbunciak
- *
+ * @since 1.0.0
  */
 public class BaseArtifactResourceProvider implements ResourceProvider {
 

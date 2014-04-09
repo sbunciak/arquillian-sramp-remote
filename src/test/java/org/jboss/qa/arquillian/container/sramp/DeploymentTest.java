@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.qa.arquillian.container.configuration.SrampConfiguration;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -32,11 +33,15 @@ public class DeploymentTest {
 	
 	@ArquillianResource
 	BaseArtifactType deployedArchive;
+	
+	@ArquillianResource
+	SrampConfiguration conf;
 
 	@Test
 	public void deploymentTest() {
 		assertNotNull(client);
 		assertNotNull(deployedArchive);
+		assertNotNull(conf);
 		assertEquals(deployedArchive.getName(), "sramp-test.jar");
 	}
 

@@ -7,11 +7,17 @@ import org.overlord.sramp.atom.err.SrampAtomException;
 import org.overlord.sramp.client.SrampAtomApiClient;
 import org.overlord.sramp.client.SrampClientException;
 
+/**
+ * Interface for S-RAMP Container interaction
+ * 
+ * @author sbunciak
+ * @since 1.0.0
+ */
 public interface SrampService {
 
 	/**
 	 * 
-	 * @return
+	 * @return SrampAtomApiClient
 	 */
 	public SrampAtomApiClient getClient();
 

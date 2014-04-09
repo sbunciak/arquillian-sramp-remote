@@ -125,7 +125,7 @@
 
 	<profiles>
 		<profile>
-			<id>arquillian-sramp-remote</id>
+			<id>arquillian-sramp-remote-test</id>
 			<dependencies>
 				<dependency>
 					<groupId>org.jboss.spec</groupId>
@@ -137,7 +137,7 @@
 				<dependency>
 					<groupId>org.jboss.qa.arquillian.container</groupId>
 					<artifactId>arquillian-sramp-remote</artifactId>
-					<version>0.0.1-SNAPSHOT</version>
+					<version>${project.version}</version>
 					<scope>test</scope>
 				</dependency>
 			</dependencies>

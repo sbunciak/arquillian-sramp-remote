@@ -28,7 +28,7 @@ import org.oasis_open.docs.s_ramp.ns.s_ramp_v1.BaseArtifactType;
  * deployment target.
  * 
  * @author sbunciak
- * 
+ * @since 1.0.0
  */
 public class SrampContainer implements DeployableContainer<SrampConfiguration> {
 

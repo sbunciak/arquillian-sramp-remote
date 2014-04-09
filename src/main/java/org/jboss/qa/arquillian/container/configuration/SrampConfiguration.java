@@ -7,7 +7,7 @@ import org.jboss.arquillian.container.spi.client.container.ContainerConfiguratio
  * Configuration for S-RAMP Container.
  * 
  * @author sbunciak
- * 
+ * @since 1.0.0
  */
 public class SrampConfiguration implements ContainerConfiguration {
 
