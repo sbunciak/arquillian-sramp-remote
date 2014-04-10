@@ -39,7 +39,7 @@ public class SrampContainer implements DeployableContainer<SrampConfiguration> {
 	@Inject
 	@ContainerScoped
 	private InstanceProducer<SrampConfiguration> confProd;
-	
+
 	private Logger log = Logger.getLogger(SrampContainer.class);
 
 	private SrampConfiguration config = null;
@@ -93,11 +93,23 @@ public class SrampContainer implements DeployableContainer<SrampConfiguration> {
 
 		// Deploying jar
 		if (archive instanceof JavaArchive) {
-			// decide whether it contains switchyard.xml
+
+			// default archive type
+			applicationType = "JavaArchive";
+
+			// SwitchYardApplication if it contains switchyard.xml
 			if (archive.contains("META-INF/switchyard.xml")) {
 				applicationType = "SwitchYardApplication";
-			} else {
-				applicationType = "JavaArchive";
+			}
+
+			// TeiidVdb if it contains vdb.xml
+			if (archive.contains("META-INF/vdb.xml")) {
+				applicationType = "TeiidVdb";
+			}
+			
+			// KieJarArchive if it contains kmodule.xml
+			if (archive.contains("META-INF/kmodule.xml")) {
+				applicationType = "KieJarArchive";
 			}
 		}
 
