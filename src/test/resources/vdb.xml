@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<vdb version="1" name="eds_tx">
+    <property value="false" name="preview"/>
+    <model visible="true" type="VIRTUAL" name="fusion" path="/eds_transactions/fusion.xmi">
+        <property value="false" name="builtIn"/>
+    </model>
+    <model visible="true" type="PHYSICAL" name="customer_src" path="/eds_transactions/customer_src.xmi">
+        <property value="false" name="builtIn"/>
+        <source translator-name="mysql5" connection-jndi-name="DefaultDS" name="customer_src"/>
+    </model>
+    <model visible="true" type="PHYSICAL" name="company_src" path="/eds_transactions/company_src.xmi">
+        <property value="false" name="builtIn"/>
+        <source translator-name="mysql5" connection-jndi-name="DefaultDS" name="company_src"/>
+    </model>
+</vdb>

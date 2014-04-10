@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://raw.github.com/droolsjbpm/droolsjbpm-knowledge/master/kie-api/src/main/resources/org/kie/api/kmodule.xsd"
+         xmlns="http://jboss.org/kie/6.0.0/kmodule" >
+
+
+    <kbase name="KiePackage">
+        <ksession name="ksession" scope="javax.enterprise.context.ApplicationScoped">
+        	
+        </ksession>
+    </kbase>
+
+</kmodule>
