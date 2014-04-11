@@ -23,9 +23,6 @@ import org.overlord.sramp.common.ArtifactType;
 import org.overlord.sramp.common.SrampModelUtils;
 
 public class SrampServiceImpl implements SrampService {
-	
-	// TODO: dummy identifier - replace with archive.getId() once available
-	private static final String archiveId = "ID-000"; 
 
 	private Logger log = Logger.getLogger(SrampServiceImpl.class);
 
@@ -33,27 +30,32 @@ public class SrampServiceImpl implements SrampService {
 
 	private long artifactCounter = 0;
 
-	
 	public SrampServiceImpl(SrampConfiguration config)
 			throws SrampClientException, SrampAtomException {
 
 		// create connection to S-RAMP
 		this.client = new SrampAtomApiClient(config.getSrampServerURL(),
-				config.getSrampUsername(), config.getSrampPassword(), true);		
+				config.getSrampUsername(), config.getSrampPassword(), true);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.jboss.arquillian.container.sramp.SrampService#getClient()
 	 */
 	public SrampAtomApiClient getClient() {
 		return client;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.jboss.arquillian.container.sramp.SrampService#deployArchive(java.lang.String, java.lang.String, java.io.InputStream)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.jboss.arquillian.container.sramp.SrampService#deployArchive(java.
+	 * lang.String, java.lang.String, java.io.InputStream)
 	 */
-	public BaseArtifactType deployArchive(String archiveName, String artifactTypeArg,
-			InputStream content) {
+	public BaseArtifactType deployArchive(String archiveId, String archiveName,
+			String artifactTypeArg, InputStream content) {
 
 		assert content != null;
 
@@ -109,10 +111,12 @@ public class SrampServiceImpl implements SrampService {
 		return artifact;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.jboss.arquillian.container.sramp.SrampService#undeployArchives()
 	 */
-	public void undeployArchives() throws SrampClientException,
+	public void undeployArchives(String archiveId) throws SrampClientException,
 			SrampAtomException {
 
 		log.debug("Deleting expanded artifacts");

@@ -106,7 +106,7 @@ public class SrampContainer implements DeployableContainer<SrampConfiguration> {
 			if (archive.contains("META-INF/vdb.xml")) {
 				applicationType = "TeiidVdb";
 			}
-			
+
 			// KieJarArchive if it contains kmodule.xml
 			if (archive.contains("META-INF/kmodule.xml")) {
 				applicationType = "KieJarArchive";
@@ -121,10 +121,11 @@ public class SrampContainer implements DeployableContainer<SrampConfiguration> {
 		log.debug("Deploying " + applicationType + ": " + archive.getName());
 
 		// export SkrinkWrap archive as InputStream
-		InputStream in = archive.as(ZipExporter.class).exportAsInputStream();
+		InputStream in = archive.as(ZipExporter.class)
+				.exportAsInputStream();
 
 		// deploy archive to S-RAMP
-		BaseArtifactType artifact = srampService.deployArchive(
+		BaseArtifactType artifact = srampService.deployArchive(archive.getId(),
 				archive.getName(), applicationType, in);
 
 		// save the deployed archive to injection point
@@ -138,7 +139,7 @@ public class SrampContainer implements DeployableContainer<SrampConfiguration> {
 
 	public void undeploy(Archive<?> archive) throws DeploymentException {
 		try {
-			srampService.undeployArchives();
+			srampService.undeployArchives(archive.getId());
 			log.info("Undeployed " + archive.getName());
 		} catch (Exception e) {
 			log.error(
