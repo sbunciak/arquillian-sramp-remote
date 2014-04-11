@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -42,17 +43,28 @@
 	</developers>
 
 	<properties>
-		<version.arquillian_core>1.0.4.Final</version.arquillian_core>
-		<version.sramp>0.3.0.Final</version.sramp>
+		<version.shrinkwrap>1.1.0</version.shrinkwrap>
+		<version.arquillian>1.1.4.Final</version.arquillian>
+		<version.sramp>0.4.0-SNAPSHOT</version.sramp>
 	</properties>
 
-	<!-- clip -->
+	<!-- Dependency management -->
 	<dependencyManagement>
 		<dependencies>
+			<!-- Overiding shrinkwrap-bom from arquillian bom as a workaround for 
+				SRAMP-393 -->
+			<!-- TODO: Remove once SHRINKWRAP-480 or SRAMP-393 is fixed -->
+			<dependency>
+				<groupId>org.jboss.shrinkwrap</groupId>
+				<artifactId>shrinkwrap-bom</artifactId>
+				<version>${version.shrinkwrap}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
-				<version>${version.arquillian_core}</version>
+				<version>${version.arquillian}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -60,6 +72,7 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<!-- Arquillian Dependencies -->
 		<dependency>
 			<groupId>org.jboss.arquillian.container</groupId>
 			<artifactId>arquillian-container-spi</artifactId>
@@ -67,6 +80,10 @@
 		<dependency>
 			<groupId>org.jboss.arquillian.container</groupId>
 			<artifactId>arquillian-container-test-spi</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.shrinkwrap</groupId>
+			<artifactId>shrinkwrap-api</artifactId>
 		</dependency>
 
 		<!-- For @Inject annotations -->
@@ -87,22 +104,15 @@
 			<artifactId>arquillian-testenricher-initialcontext</artifactId>
 		</dependency>
 
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<scope>test</scope>
-		</dependency>
-
+		<!-- S-RAMP Dependencies -->
 		<dependency>
 			<groupId>org.overlord.sramp</groupId>
 			<artifactId>s-ramp-client</artifactId>
+			<version>${version.sramp}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.overlord.sramp</groupId>
+			<artifactId>s-ramp-integration-java</artifactId>
 			<version>${version.sramp}</version>
 		</dependency>
 		<dependency>
@@ -116,9 +126,27 @@
 			<version>${version.sramp}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.overlord.sramp</groupId>
+			<artifactId>s-ramp-integration-teiid</artifactId>
+			<version>${version.sramp}</version>
+		</dependency>
+		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
+		</dependency>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<!-- clip -->
@@ -127,13 +155,6 @@
 		<profile>
 			<id>arquillian-sramp-remote-test</id>
 			<dependencies>
-				<dependency>
-					<groupId>org.jboss.spec</groupId>
-					<artifactId>jboss-javaee-6.0</artifactId>
-					<version>1.0.0.Final</version>
-					<type>pom</type>
-					<scope>provided</scope>
-				</dependency>
 				<dependency>
 					<groupId>org.jboss.qa.arquillian.container</groupId>
 					<artifactId>arquillian-sramp-remote</artifactId>
