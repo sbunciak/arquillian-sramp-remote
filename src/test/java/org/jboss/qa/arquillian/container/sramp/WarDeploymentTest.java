@@ -24,7 +24,7 @@ public class WarDeploymentTest {
 	public static Archive<?> createDeployment() {
 		WebArchive archive = ShrinkWrap
 				.create(WebArchive.class, "sramp-test.war")
-				.addClass(DummyClass.class).addAsWebInfResource("web.xml")
+				.addClass(DummyClass.class).setWebXML("web.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 		return archive;
 	}
