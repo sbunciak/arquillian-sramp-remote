@@ -45,7 +45,7 @@
 	<properties>
 		<version.shrinkwrap>1.1.0</version.shrinkwrap>
 		<version.arquillian>1.1.4.Final</version.arquillian>
-		<version.sramp>0.4.0-SNAPSHOT</version.sramp>
+		<version.sramp>0.4.0.Final</version.sramp>
 	</properties>
 
 	<!-- Dependency management -->
