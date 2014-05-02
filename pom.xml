@@ -12,7 +12,7 @@
 	<version>1.1.1-SNAPSHOT</version>
 	<name>Overlod S-RAMP: Arquillian remote container adapter</name>
 	<description>This project consist of S-RAMP remote container adapter implementation for Arquillian. This Arquillian extension will enable users to deploy artifacts to S-RAMP Repository before running their tests using Arquillian.</description>
-	<url>https://github.com/sbunciak/arquillian-sramp-remote/wiki</url>
+	<url>https://community.jboss.org/wiki/S-RAMPContainerAdapterForArquillianAvailable</url>
 	<licenses>
 		<license>
 			<name>Apache License Version 2.0</name>
@@ -20,6 +20,8 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
+	<inceptionYear>2014</inceptionYear>
 
 	<scm>
 		<connection>scm:git:git@github.com:sbunciak/arquillian-sramp-remote.git</connection>
@@ -45,6 +47,7 @@
 		<version.shrinkwrap>1.1.0</version.shrinkwrap>
 		<version.arquillian>1.1.4.Final</version.arquillian>
 		<version.sramp>0.4.0.Final</version.sramp>
+		<version.dtgov>1.2.0.Final</version.dtgov>
 	</properties>
 
 	<!-- Dependency management -->
@@ -129,6 +132,13 @@
 			<artifactId>s-ramp-integration-teiid</artifactId>
 			<version>${version.sramp}</version>
 		</dependency>
+		<!-- DTGov dependencies -->
+		<dependency>
+			<groupId>org.overlord.dtgov</groupId>
+			<artifactId>dtgov-task-client</artifactId>
+			<version>${version.dtgov}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -148,7 +158,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<!-- clip -->
 
 	<profiles>
 		<profile>
