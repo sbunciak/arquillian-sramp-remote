@@ -7,7 +7,7 @@ This project consist of S-RAMP remote container adapter implementation for Arqui
 
 Basically, _arquillian-sramp-remote_ converts ShrinkWrap archive into S-RAMP compatible archive, and deploy it to proper S-RAMP context. 
 
-This might become handy when developing e.g. custom artifact deriver for S-RAMP (or other form of inter-product integration) and would like to test it, or when creating custom governance workflows for DTGov. In that case you can leverage feature of this extension to inject SrampAtomApiClient and/or DTGov TaskApiClient as ArquillianResource to your test classes.
+This might become handy when developing e.g. custom artifact deriver for S-RAMP (or other form of inter-product integration) and would like to test it, or when creating custom governance workflows for DTGov. In that case you can leverage feature of this extension to inject _SrampAtomApiClient_ and/or DTGov _TaskApiClient_ as _@ArquillianResource_ to your test classes.
 
 For more information checkout wiki [page](https://github.com/sbunciak/arquillian-sramp-remote/wiki/About).
 
