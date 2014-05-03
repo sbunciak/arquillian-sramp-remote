@@ -10,6 +10,7 @@ import org.jboss.arquillian.container.spi.client.protocol.metadata.ProtocolMetaD
 import org.jboss.arquillian.container.spi.context.annotation.ContainerScoped;
 import org.jboss.arquillian.container.spi.context.annotation.DeploymentScoped;
 import org.jboss.arquillian.core.api.InstanceProducer;
+import org.jboss.arquillian.core.api.annotation.ApplicationScoped;
 import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.qa.arquillian.container.configuration.SrampConfiguration;
 import org.jboss.qa.arquillian.container.service.SrampService;
@@ -22,6 +23,8 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 import org.oasis_open.docs.s_ramp.ns.s_ramp_v1.BaseArtifactType;
+import org.overlord.dtgov.taskclient.TaskApiClient;
+import org.overlord.dtgov.taskclient.TaskApiClientException;
 
 /**
  * Implementation of Arquillian container to support S-RAMP as a remote
@@ -40,6 +43,10 @@ public class SrampContainer implements DeployableContainer<SrampConfiguration> {
 	@ContainerScoped
 	private InstanceProducer<SrampConfiguration> confProd;
 
+	@Inject
+	@ApplicationScoped
+	private InstanceProducer<TaskApiClient> taskApiController;
+
 	private Logger log = Logger.getLogger(SrampContainer.class);
 
 	private SrampConfiguration config = null;
@@ -52,7 +59,18 @@ public class SrampContainer implements DeployableContainer<SrampConfiguration> {
 
 	public void setup(SrampConfiguration configuration) {
 		this.config = configuration;
+		// produce configuration
 		confProd.set(configuration);
+		// produce task api client
+		try {
+			String dtgovUrl = "http://" + configuration.getSrampHost() + ":"
+					+ configuration.getSrampPort() + "/dtgov/rest/tasks";
+			
+			taskApiController.set(new TaskApiClient(dtgovUrl, configuration
+					.getSrampUsername(), configuration.getSrampPassword()));
+		} catch (TaskApiClientException e) {
+			log.error(e.getMessage(), e.getCause());
+		}
 	}
 
 	public void start() throws LifecycleException {
@@ -121,8 +139,7 @@ public class SrampContainer implements DeployableContainer<SrampConfiguration> {
 		log.debug("Deploying " + applicationType + ": " + archive.getName());
 
 		// export SkrinkWrap archive as InputStream
-		InputStream in = archive.as(ZipExporter.class)
-				.exportAsInputStream();
+		InputStream in = archive.as(ZipExporter.class).exportAsInputStream();
 
 		// deploy archive to S-RAMP
 		BaseArtifactType artifact = srampService.deployArchive(archive.getId(),

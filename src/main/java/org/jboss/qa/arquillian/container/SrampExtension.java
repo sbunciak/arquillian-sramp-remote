@@ -6,6 +6,7 @@ import org.jboss.arquillian.test.spi.enricher.resource.ResourceProvider;
 import org.jboss.qa.arquillian.container.provider.BaseArtifactResourceProvider;
 import org.jboss.qa.arquillian.container.provider.SrampClientResourceProvider;
 import org.jboss.qa.arquillian.container.provider.SrampConfigurationResourceProvider;
+import org.jboss.qa.arquillian.container.provider.TaskApiClientResourceProvider;
 
 /**
  * Plug-able extension for Arquillian to register S-RAMP Adapter Container  
@@ -19,7 +20,8 @@ public class SrampExtension implements LoadableExtension {
 		builder.service(DeployableContainer.class, SrampContainer.class)
 			   .service(ResourceProvider.class, SrampConfigurationResourceProvider.class)
 			   .service(ResourceProvider.class, SrampClientResourceProvider.class)
-			   .service(ResourceProvider.class, BaseArtifactResourceProvider.class);
+			   .service(ResourceProvider.class, BaseArtifactResourceProvider.class)
+			   .service(ResourceProvider.class, TaskApiClientResourceProvider.class);
 	}
 
 }
