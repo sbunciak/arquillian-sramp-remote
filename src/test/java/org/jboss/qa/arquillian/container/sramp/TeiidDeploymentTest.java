@@ -45,7 +45,7 @@ public class TeiidDeploymentTest {
 		assertEquals("Number of Tied Vdbs does not match.", 1,
 				numOfResults);
 
-		// check also expanded bpmn
+		// check also expanded TeiidVdbManifest
 		numOfResults = client
 				.buildQuery("/s-ramp/ext/TeiidVdbManifest[expandedFromDocument[@uuid=?]]")
 				.parameter(deployedArchive.getUuid()).query().getTotalResults();
