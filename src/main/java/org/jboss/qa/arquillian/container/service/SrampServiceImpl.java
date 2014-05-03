@@ -133,6 +133,17 @@ public class SrampServiceImpl implements SrampService {
 					artifactSummary.getType());
 		}
 
+		// Delete (un)deployment information
+		rset = client
+				.buildQuery(
+						"/s-ramp[describesDeployment[@arquillian-archive-id = ?]]")
+				.parameter(archiveId).query();
+		for (ArtifactSummary artifactSummary : rset) {
+			log.debug("Deleting: " + artifactSummary.getName());
+			client.deleteArtifact(artifactSummary.getUuid(),
+					artifactSummary.getType());
+		}
+		
 		// Delete main archive
 		// Related are deleted along with the primary
 		rset = client.buildQuery("/s-ramp[@arquillian-archive-id = ?]")
