@@ -5,12 +5,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -18,9 +12,11 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.oasis_open.docs.s_ramp.ns.s_ramp_v1.BaseArtifactType;
 import org.overlord.dtgov.taskapi.types.FindTasksRequest;
 import org.overlord.dtgov.taskapi.types.StatusType;
@@ -31,6 +27,12 @@ import org.overlord.dtgov.taskapi.types.TaskType;
 import org.overlord.dtgov.taskclient.TaskApiClient;
 import org.overlord.dtgov.taskclient.TaskApiClientException;
 import org.overlord.sramp.client.SrampAtomApiClient;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /*
  * This test should be used with SimpleReleaseProcess workflow for DTGov.
@@ -67,12 +69,11 @@ public class WorkflowTest {
 			// Obtain new Task instance
 			TaskType devTask = getCurrentTasks().get(0);
 			// check name of the task
-			assertEquals("Test Dev", devTask.getName());
+			assertEquals("Test deployment '" + deployedArchive.getName() + "' in the DEV environment",
+					devTask.getName());
 			// check successful deployment
-			// *** If you modify governance.targets you need to also modify this
-			// check/location ***
-			assertTrue(new File("/tmp/dev/jbossas7/standalone/deployments/"
-					+ deployedArchive.getName()).exists());
+			// *** If you modify governance.targets you need to also modify this location ***
+			assertTrue(new File("/tmp/dev/jbossas7/standalone/deployments/" + deployedArchive.getName()).exists());
 			// claim the task
 			assertNotNull(taskClient.claimTask(devTask.getId()));
 			// start the task
@@ -84,39 +85,38 @@ public class WorkflowTest {
 
 			// complete Test QA
 			TaskType qaTask = getCurrentTasks().get(0);
-			assertEquals("Test Qa", qaTask.getName());
-			assertTrue(new File("/tmp/qa/jbossas7/standalone/deployments/"
-					+ deployedArchive.getName()).exists());
+			assertEquals("Test deployment '" + deployedArchive.getName() + "' in the QA environment", qaTask.getName());
+			assertTrue(new File("/tmp/qa/jbossas7/standalone/deployments/" + deployedArchive.getName()).exists());
 			assertNotNull(taskClient.claimTask(qaTask.getId()));
 			assertNotNull(taskClient.startTask(qaTask.getId()));
 			// successfully complete the task
 			params = taskDataToMap(qaTask.getTaskData());
 			params.put("Status", "pass");
-			assertNotNull(taskClient.completeTask(qaTask.getId(),params));
+			assertNotNull(taskClient.completeTask(qaTask.getId(), params));
 
 			// complete Test Stage
 			TaskType stageTask = getCurrentTasks().get(0);
-			assertEquals("Test Stage", stageTask.getName());
-			assertTrue(new File("/tmp/stage/jbossas7/standalone/deployments/"
-					+ deployedArchive.getName()).exists());
+			assertEquals("Test deployment '" + deployedArchive.getName() + "' in the STAGE environment",
+					stageTask.getName());
+			assertTrue(new File("/tmp/stage/jbossas7/standalone/deployments/" + deployedArchive.getName()).exists());
 			assertNotNull(taskClient.claimTask(stageTask.getId()));
 			assertNotNull(taskClient.startTask(stageTask.getId()));
 			// successfully complete the task
 			params = taskDataToMap(stageTask.getTaskData());
 			params.put("Status", "pass");
-			assertNotNull(taskClient.completeTask(stageTask.getId(),params));
+			assertNotNull(taskClient.completeTask(stageTask.getId(), params));
 
 			// complete Test Prod
 			TaskType prodTask = getCurrentTasks().get(0);
-			assertEquals("Test Prod", prodTask.getName());
-			assertTrue(new File("/tmp/prod/jbossas7/standalone/deployments/"
-					+ deployedArchive.getName()).exists());
+			assertEquals("Test deployment '" + deployedArchive.getName() + "' in the PROD environment",
+					prodTask.getName());
+			assertTrue(new File("/tmp/prod/jbossas7/standalone/deployments/" + deployedArchive.getName()).exists());
 			assertNotNull(taskClient.claimTask(prodTask.getId()));
 			assertNotNull(taskClient.startTask(prodTask.getId()));
 			// successfully complete the task
 			params = taskDataToMap(prodTask.getTaskData());
 			params.put("Status", "pass");
-			assertNotNull(taskClient.completeTask(prodTask.getId(),params));
+			assertNotNull(taskClient.completeTask(prodTask.getId(), params));
 		} catch (TaskApiClientException e) {
 			e.printStackTrace();
 			fail();
@@ -160,14 +160,12 @@ public class WorkflowTest {
 
 		try {
 			// iterate over request result
-			for (TaskSummaryType taskSummary : taskClient
-					.findTasks(taskRequest).getTaskSummary()) {
+			for (TaskSummaryType taskSummary : taskClient.findTasks(taskRequest).getTaskSummary()) {
 				//
 				TaskType task = taskClient.getTask(taskSummary.getId());
 
 				for (Entry e : task.getTaskData().getEntry()) {
-					if (e.getKey().equalsIgnoreCase("DeploymentUuid")
-							&& e.getValue().equalsIgnoreCase(deploymentUuid)) {
+					if (e.getKey().equalsIgnoreCase("DeploymentUuid") && e.getValue().equalsIgnoreCase(deploymentUuid)) {
 						result.add(task);
 					}
 				}
