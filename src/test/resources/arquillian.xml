@@ -11,8 +11,4 @@
 			<property name="srampPassword">admin1admin?</property>
 		</configuration>
 	</container>
-
-	<extension qualifier="webdriver">
-		<property name="browser">firefox</property>
-	</extension>
 </arquillian>
